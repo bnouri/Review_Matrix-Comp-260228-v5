@@ -1,0 +1,287 @@
+\NeedsTeXFormat{LaTeX2e}
+
+% ------------------------------------------------------
+%  Theme Selection: Metropolis
+% ------------------------------------------------------
+\usetheme[numbering=none, progressbar=frametitle]{metropolis}
+\usecolortheme{dove} % White background, clean professional look
+
+\setbeamertemplate{navigation symbols}{}
+
+% ------------------------------------------------------
+%  Color Palette (Unified RGB Model)
+% ------------------------------------------------------
+\usepackage{xcolor}
+
+% Siemens & Academic Branding
+\definecolor{siemensgreen}{rgb}{0.0, 0.6, 0.6}      % Official Siemens Petrol
+\definecolor{siemensblue}{rgb}{0.0, 0.06, 0.12}     % Deep Dark Blue
+%\definecolor{academicblue}{rgb}{0.0, 0.2, 0.4}     % Oxford/Deep Navy
+\definecolor{academicblue}{rgb}{0.0, 0.0, 0.0}      % Black
+\definecolor{academicgreen}{rgb}{0.0, 0.32, 0.22}   % Emerald
+
+% Code & Syntax Highlighting
+\definecolor{codegreen}{rgb}{0.0, 0.65, 0.6}
+\definecolor{codeblue}{rgb}{0.0, 0.0, 0.8}
+\definecolor{codered}{rgb}{0.8, 0.0, 0.0}
+
+\newcommand{\blue}[1]{\textcolor{codeblue}{#1}}
+\newcommand{\red}[1]{\textcolor{codered}{#1}}
+\newcommand{\green}[1]{\textcolor{codegreen}{#1}}
+
+% ------------------------------------------------------
+%  Beamer UI Customization
+% ------------------------------------------------------
+% Apply to main UI elements
+\setbeamercolor{palette primary}{bg=, fg=academicblue}
+\setbeamercolor{progress bar}{fg=academicblue}
+\setbeamercolor{title separator}{fg=academicblue}
+
+% ------------------------------------------------------
+% Frame Titles (Centered & Bold)
+% ------------------------------------------------------
+\setbeamercolor{frametitle}{fg=codered}
+\setbeamerfont{frametitle}{series=\LARGE\bfseries}
+\setbeamerfont{framesubtitle}{size=\small, series=\bfseries}
+
+\makeatletter
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+  \begin{beamercolorbox}[wd=\paperwidth, sep=0.32cm, center]{frametitle}%
+    {\usebeamerfont{frametitle}\insertframetitle\par}%
+    \ifx\insertframesubtitle\@empty\else%
+      \vspace{0.15em}%
+      {\usebeamerfont{framesubtitle}\insertframesubtitle\par}%
+    \fi%
+  \end{beamercolorbox}%
+}
+\makeatother
+
+% ------------------------------------------------------
+% Custom Footer (@2026 Behzad Nouri)
+% ------------------------------------------------------
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2ex, dp=1ex, rightskip=0.5cm]{footline}%
+    \footnotesize \hspace*{12pt} \copyright 2026 Behzad Nouri \hfill \insertframenumber \smallskip
+  \end{beamercolorbox}%
+}
+
+% ------------------------------------------------------
+% Section Title Slides
+% ------------------------------------------------------
+\AtBeginSection[]{
+  \begin{frame}[plain,noframenumbering]
+    \vfill\centering
+    {\LARGE\color{academicblue}\insertsectionhead\par}
+    \vspace{0.2em}
+    {\color{academicblue}\rule{0.55\linewidth}{1.2pt}\par}
+    \vfill
+  \end{frame}
+}
+
+% ------------------------------------------------------
+%  EDA Essentials: Math, Physics, and Circuits
+% ------------------------------------------------------
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{siunitx}
+\sisetup{detect-all}
+
+% Matrix manipulation for MNA (Modified Nodal Analysis)
+\usepackage{nicematrix}
+\usepackage{arydshln}
+\setlength{\dashlinedash}{1pt}
+\setlength{\dashlinegap}{1pt}
+
+% Figures & Captions
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf}
+
+% Font rendering
+\usefonttheme[onlymath]{serif}
+\usefonttheme{professionalfonts}
+\DeclareMathSizes{8}{10}{7}{5}
+
+% Code and Containers
+\usepackage{verbatim}
+\usepackage[most]{tcolorbox}
+
+\usepackage[
+  backend=biber,
+  style=ieee,
+  sorting=nyt
+]{biblatex}
+
+\addbibresource{./refs.bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%% Code Listing/snipet:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}
+
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\definecolor{codegray}{rgb}{0.5, 0.5, 0.5}
+\definecolor{codepurple}{rgb}{0.58, 0, 0.82}
+\definecolor{codemagenta}{rgb}{0.8, 0, 0.8}
+\definecolor{codeteal}{rgb}{0, 0.5, 0.5}
+
+% --- Global Listings Settings (Shared by all styles) ---
+\lstset{
+  backgroundcolor=\color{backcolour},
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numberstyle=\tiny\color{codegray},
+  numbersep=8pt,
+  xleftmargin=15pt,
+  aboveskip=10pt,
+  belowskip=10pt,
+  tabsize=4,
+  frame=none,
+  mathescape=false,  % Crucial: tells listings $ is just a character
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  breakatwhitespace=false,
+}
+
+\lstdefinestyle{text}{
+  language={},
+}
+
+% -------------------------------------------------------
+% Style: Cpp
+% -------------------------------------------------------
+\lstdefinestyle{cpp}{
+  language=C++,
+  commentstyle=\color{codegreen}\itshape,
+  keywordstyle=\color{magenta},
+  keywordstyle=[2]\color{codeblue},
+  stringstyle=\color{codepurple},
+  directivestyle=\color{codeteal},
+  % REMOVE any literate={\$}{{\$}} lines here
+  morekeywords=[2]{
+      std, cout, cin, endl, vector, string, map, set, list, pair,
+      size_t, int8_t, int16_t, int32_t, int64_t, uint8_t,
+      unique_ptr, shared_ptr, auto, nullptr, constexpr, noexcept
+    }
+}
+
+% -------------------------------------------------------
+% Style: Python
+% -------------------------------------------------------
+\lstdefinestyle{python}{
+  language=Python,
+  commentstyle=\color{codegreen}\itshape,
+  keywordstyle=\color{blue},
+  keywordstyle=[2]\color{codeblue},
+  keywordstyle=[3]\color{codemagenta},
+  stringstyle=\color{codepurple},
+  morecomment=[s][\color{codegreen}]{"""}{"""},
+  morecomment=[s][\color{codegreen}]{'''}{'''},
+  morecomment=[f][\color{codeteal}]{@},
+  tabsize=4,
+  morekeywords=[2]{
+      print, len, range, type, int, str, float, list, dict, open, super, self,
+      True, False, None, Exception
+    },
+  morekeywords=[3]{
+      __init__, __str__, __repr__, __len__, __main__, __name__
+    }
+}
+
+% -------------------------------------------------------
+% Style: Matlab
+% -------------------------------------------------------
+\lstdefinestyle{matlab}{
+  language=Matlab,
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{blue},
+  keywordstyle=[2]\color{codemagenta},
+  stringstyle=\color{codepurple},
+  morekeywords={global, persistent, properties, methods, events, classdef},
+  morekeywords=[2]{
+      plot, figure, subplot, title, xlabel, ylabel, grid, hold,
+      zeros, ones, eye, size, length, disp, fprintf, clear, clc
+    }
+}
+
+% -------------------------------------------------------
+% Style: Bash/Shell
+% -------------------------------------------------------
+\lstdefinestyle{bash}{
+  language=bash,
+  alsoletter={-},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  keywordstyle=[2]\color{codeblue},
+  stringstyle=\color{codepurple},
+  morekeywords=[2]{
+      sudo, apt, git, chmod, mkdir, rm, cp, mv, cat, grep, sed, awk,
+      curl, wget, systemctl, find, export, source, ssh
+    },
+  emph={USER, HOME, PATH, PWD, SHELL},
+  emphstyle=\color{codeteal}
+}
+
+% -------------------------------------------------------
+% Style: Git (Specialized)
+% -------------------------------------------------------
+\lstdefinestyle{git}{
+  language=bash,
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},          % 'git' command
+  keywordstyle=[2]\color{codeblue},     % subcommands
+  keywordstyle=[3]\color{codeteal},     % flags/options
+  stringstyle=\color{codepurple},
+  morekeywords={git},
+  morekeywords=[2]{
+      add, commit, push, pull, fetch, merge, rebase,
+      branch, checkout, switch, restore, log, status,
+      diff, config, init, remote, clone, stash, reset, tag
+    },
+  morekeywords=[3]{
+      -m, -a, -p, -u, -d, -f, -b, --all, --force, --graph,
+      --oneline, --decorate, --global, --hard, --soft
+    },
+  emph={master, main, origin, HEAD},
+  emphstyle=\color{codemagenta}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  SHort Hands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Math ---
+\newcommand{\mat}[1]{\mathbf{#1}} % Matrix, Bold
+%%\newcommand{\bm}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\bs}[1]{\mbox{$\boldsymbol{#1}$}}
+\newcommand{\op}[1]{\operatorname{#1}}
+\def\trieq{\buildrel \Delta \over =}
+
+\DeclareRobustCommand{\cmd}[1]{\texttt{\textcolor{codeblue}{#1}}}
+
+\newcommand{\np}{\null\par\vfill\clearpage\noindent}
+\newcommand{\nl}{\null\par\noindent}
+
+
+\newcommand{\Mark}[1]{\nl\raisebox{-2pt}{\scalebox{1.5}{\textcolor{academicgreen}{#1}}}\hspace*{0.25em}}
+
+
+%% --- List Items ---
+\newcommand{\nlb}{\Mark{\textbullet}}
+\newcommand{\nlc}{\Mark{\textcircle}}
+\newcommand{\nld}{\Mark{\textendash}}
+\newcommand{\nlg}{\Mark{\textdagger}}
+\newcommand{\nlgg}{\Mark{\textdaggerdbl}}
+\newcommand{\nlt}{\nl\raisebox{0pt}{\scalebox{1.25}{\textcolor{academicgreen}{$\blacktriangleright$}}}\hspace*{0.25em}}
+
+%%EOF
+
+

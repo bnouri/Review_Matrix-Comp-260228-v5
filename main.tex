@@ -1,0 +1,68 @@
+% !TEX program = xelatex
+%%============================================================================
+%\documentclass[handout,169,8pt]{beamer}
+%\usepackage{pgfpages,tikz}
+%
+%\pgfpagesuselayout{6 on 1}[
+%letterpaper,
+%border shrink=-5mm
+%]
+%
+%\mode<handout>{
+%    \setbeamertemplate{background}{
+%        \begin{tikzpicture}[overlay, remember picture]
+%            \draw [line width=0.8pt, color=gray]
+%            ([shift={(0.1cm,-0.1cm)}]current page.north west)
+%            rectangle
+%            ([shift={(-0.1cm,0.1cm)}]current page.south east);
+%        \end{tikzpicture}
+%    }
+%}
+%%============================================================================
+\documentclass[8pt,aspectratio=169]{beamer}
+
+% Custom Beamer settings (your local style file)
+\RequirePackage{./.xbmr}
+
+% Course Information
+\title[EDA 898]{EDA 898}
+\subtitle{Reviews of Linear Algebra and Matrix Computations}
+\author{Dr.~Behzad Nouri}
+\date{Winter 2026}
+
+\begin{document}
+
+% In handout mode, the title page is essential for the first slide slot
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Prologue}
+  In the next slides, we will review some fundamental concepts in linear algebra and matrix analysis that are essential for understanding the mathematical foundations of EDA. We will cover topics such as eigenvalues, eigenvectors, diagonalization and matrix functions as they are needed in this EDA course. These concepts will provide the necessary background for analyzing and designing complex systems in the context of electronic design automation.
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Sections:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{./xch/eigen-decomposition.tex}
+\input{./xch/matrix-functions.tex}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%     Bibliography Slide     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks]{References}
+  \nocite{*}
+  \printbibliography
+\end{frame}
+
+\end{document}

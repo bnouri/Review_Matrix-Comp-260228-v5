@@ -1,0 +1,182 @@
+# ===================================================================
+# General Best Practices & Community Standards
+#
+# This .gitignore has been improved to follow community best practices.
+# It is organized by section for easier maintenance.
+# ===================================================================
+
+# -------------------------------------------------------------------
+# Operating System Files
+# Purpose: Ignore OS-specific metadata and temporary files.
+# -------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+._*
+.nfs*
+.Trash-*
+.fuse_hidden*
+.directory
+
+# -------------------------------------------------------------------
+# Common Editor & Temporary Files
+# Purpose: Ignore temporary files, swap files, and local settings
+# from popular text editors and tools.
+# -------------------------------------------------------------------
+# Vim
+*.sw[opn]
+*.swo
+*.swp
+*.swp.[0-9]
+.*.swp
+*.undo
+*.project.vim
+
+# Emacs
+*~
+#*#
+
+# Other backups & temp files
+*.bak
+*.tmp
+*.url
+.dropbox
+
+# -------------------------------------------------------------------
+# IDE (Integrated Development Environment) Directories
+# Purpose: Ignore metadata and settings from IDEs like VS Code, JetBrains, etc.
+# -------------------------------------------------------------------
+.vscode/
+.idea/
+*.prj
+
+# -------------------------------------------------------------------
+# LaTeX Generated Files
+# Source: Adapted from GitHub's official LaTeX .gitignore template.
+# Purpose: Ignore auxiliary files, logs, and intermediate documents
+# created during the LaTeX compilation process.
+# -------------------------------------------------------------------
+*.acn
+*.acronyms
+*.acr
+*.alg
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.cb
+*.cb2
+*.dcl
+*.dvi
+*.eps
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.maf
+*.mtc
+*.mtc[0-9]
+*.mtc??
+*.nav
+*.out
+*.ps
+*.run.xml
+*.snm
+*.spl
+*.synctex
+*.synctex.gz
+*.synctex.gz(busy)
+*.toc
+*.tps
+*.vrb
+*.xml
+*-blx.bib
+*-blx.aux
+*blx.bib
+*blx.aux
+latex.out
+*.pdfsync
+*.fls
+*.xdv
+*.4ct
+*.4tc
+*.lg
+*.xref
+*.pdfpc
+*.pdfpcnotes
+*.upages
+
+
+
+# LaTeX packages specific
+*.glsdefs
+*.glo
+/out/
+/_minted*
+
+# Texstudio
+.texla.aux
+
+# It is common to KEEP the final PDF in the repository.
+# If you want to ignore it, uncomment the line below.
+# *.pdf
+# *.PDF
+
+# -------------------------------------------------------------------
+# Compiled Binaries & Build Artifacts
+# Purpose: Ignore compiled code, executables, and output directories.
+# -------------------------------------------------------------------
+# Executables
+*.exe
+*.bat
+*.cmd
+
+# Build output directories
+[Bb]uild/
+[Bb]in/
+[Oo]ut/
+[Oo]utput/
+out*/
+
+# -------------------------------------------------------------------
+# Project-Specific & Custom File Types
+# Purpose: Ignores for files that appear to be specific to your
+# project's toolchain (e.g., simulation or engineering software).
+# -------------------------------------------------------------------
+_Arc/
+#*
+#*.cc#
+#*.cpp#
+*.asv
+MIL.*
+sxcmd.*
+*.sx
+*.lis
+*.fsdef
+*.str
+*.ic0
+*.st0
+*.pa0
+*.sw0
+*.tr0
+*.ac0
+*.ppl
+*.dcl
+*.fdb*
+nul*
+
+# -------------------------------------------------------------------
+# Final Rule - Do NOT ignore the .gitignore file itself
+# -------------------------------------------------------------------
+# The following line is commented out because a project should always
+# track its own .gitignore file.
+# /.gitignore

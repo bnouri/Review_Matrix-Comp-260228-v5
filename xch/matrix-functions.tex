@@ -1,0 +1,158 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Section: Matrix Functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Matrix Functions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t]{Matrix Functions}
+    For a diagonalizable matrix $A = T \Lambda T^{-1}$, we can extend a scalar function $f$ (such as polynomials, exponentials, or roots) to the matrix case.
+
+    \begin{alert}
+        If $f$ is defined on the spectrum%%%%%%%%%%%%
+        \footnote{The \emph{spectrum} of a matrix $A$, denoted $\sigma(A)$, is the set of all eigenvalues of $A$, i.e.,
+            \[
+                \sigma(A) = \{\lambda \in \mathbb{C} : \det(A - \lambda I) = 0\}.
+            \]}%
+        of $A$, we define the \textbf{matrix function} as:
+        \[
+            f(A) = T \, f(\Lambda) \, T^{-1}
+        \]
+    \end{alert}
+
+
+    where $f(\Lambda)$ is the diagonal matrix obtained by applying $f$ to each eigenvalue:
+    \[
+        f(\Lambda) = \operatorname{diag}\left(f(\lambda_1), f(\lambda_2), \dots, f(\lambda_n)\right)
+    \]
+
+
+    \vfill
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t,allowframebreaks]{Matrix Powers --}
+
+    \textbf{Why diagonalize?}
+    Computing powers $A^n$ directly requires $n$ matrix multiplications.
+    But if $A$ is diagonalizable, we can write
+    \[
+        A = T \Lambda T^{-1},
+    \]
+    and therefore
+    \[
+        A^n = (T \Lambda T^{-1})^n = T\, \Lambda^n\, T^{-1}.
+    \]
+
+    Since $\Lambda$ is diagonal, its powers are trivial:
+    \[
+        \Lambda^n =
+        \mathrm{diag}(\lambda_1^n, \lambda_2^n, \dots, \lambda_n^n),
+    \]
+    so the computation becomes extremely inexpensive.
+
+    \medskip
+    \pagebreak
+
+    \textbf{Examples:}
+    \[
+        A^{1/2} = T\, \Lambda^{1/2}\, T^{-1},
+        \qquad
+        e^A = T\, e^{\Lambda}\, T^{-1},
+    \]
+    with
+    \[
+        e^\Lambda =
+        \mathrm{diag}(e^{\lambda_1},\, \dots,\, e^{\lambda_n}).
+    \]
+
+    \begin{alertblock}{Why this matters (especially in EDA):}\smallskip
+        Diagonalization converts difficult matrix computations into simple scalar
+        operations on eigenvalues.
+        This enables fast evaluation of $A^n$, $A^{1/2}$, and $e^A$, which arise in
+        simulation algorithms, stability analysis, and time‑domain state‑transition solutions.
+    \end{alertblock}
+
+    \vfill
+
+\end{frame}
+
+\begin{frame}[t, allowframebreaks]{Matrix Exponential --}
+
+    \textbf{Scalar exponential (review):}
+    \[
+        e^{x} = 1 + x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \cdots
+    \]
+
+    \medskip
+
+    \textbf{Matrix exponential:}
+    For any square matrix $A$, the exponential is defined by the same power series:
+    \[
+        e^{A} \;=\; \sum_{n=0}^{\infty} \frac{A^{n}}{n!}.
+    \]
+
+    \medskip
+
+    \textbf{Key idea:}
+    The series converges for every matrix $A$, and $e^{A}$ behaves like a
+    generalization of the scalar exponential to matrices.
+
+    \medskip
+
+
+    \textbf{1. Power–series definition:}
+    \[
+        e^{A}
+        = \sum_{n=0}^{\infty} \frac{A^{n}}{n!}.
+    \]
+
+    \medskip
+
+    \textbf{2. Diagonalization:}
+    If $A$ is diagonalizable,
+    \[
+        A = T \Lambda T^{-1},
+    \]
+    where $\Lambda = \mathrm{diag}(\lambda_1,\dots,\lambda_n)$.
+
+    \medskip
+
+    \textbf{3. Put the series into the diagonal form:}
+    \[
+        A^{n} = (T \Lambda T^{-1})^{n}
+        = T\,\Lambda^{n}\,T^{-1}.
+    \]
+
+    \medskip
+
+    \textbf{4. Substitute into the series:}
+    \[
+        e^{A}
+        = \sum_{n=0}^{\infty} \frac{A^{n}}{n!}
+        = \sum_{n=0}^{\infty}
+        \frac{T \Lambda^{n} T^{-1}}{n!}
+        = T\left(\sum_{n=0}^{\infty} \frac{\Lambda^{n}}{n!}\right)T^{-1}.
+    \]
+
+    \medskip
+
+    \textbf{5. But $\Lambda$ is diagonal, so}
+    \[
+        e^{\Lambda}
+        = \mathrm{diag}(e^{\lambda_1},\, \dots,\, e^{\lambda_n}),
+    \]
+    and therefore
+    \[
+        \boxed{\,e^{A} = T e^{\Lambda} T^{-1}\, }.
+    \]
+
+\end{frame}
+
+
+%%EoF

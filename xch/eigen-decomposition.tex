@@ -1,0 +1,444 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Section: Eigenvalues, Eigenvectors, and Diagonalization
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Eigenvalues, Eigenvectors, and Diagonalization}
+
+%%%%%%%%%%%%%%%%%%%%%
+%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%    
+%%Note: 'fragile' is mandatory when using listings in a frame
+\begin{frame}[fragile,t,allowframebreaks]{Eigenvalues and Eigenvectors --}
+
+    \begin{alertblock}{\textbf{\underline{Eigenvectors and Eigenvalues:}}} \medskip
+        An \alert{eigenvector} of an $n \times n$ matrix $\mathbf{A}$ is a nonzero vector $\mathbf{v}$ such that
+        $$\mathbf{A}\mathbf{v} = \lambda \mathbf{v}$$
+        for some scalar $\lambda$.
+
+        \vspace{0.3cm}
+
+        $\lambda$ is an \alert{eigenvalue} of $\mathbf{A}$ if there exists a nontrivial solution $\mathbf{v}$ ($\mathbf{v} \neq \mathbf{0}$) to this equation; such a vector $\mathbf{v}$ is called an \alert{eigenvector corresponding to $\lambda$}.
+    \end{alertblock}
+
+    From the above definition, a scalar $\lambda$ is an eigenvalue of an $n \times n$ matrix $\mat A$ iff the homogeneous linear system
+    %
+    \begin{equation}
+        \left(\mat{A} - \lambda \mat{I}\right)\,\mathbf{v} = \mathbf{0}
+    \end{equation}
+    %
+    has a nontrivial solution ($\mathbf{v} \neq \mathbf{0}$). Since $\mathbf{v}$ is nonzero, the matrix $\left(\mat{A} - \lambda \mat{I}\right)$ must be singular, i.e., \emph{non-invertible}. A matrix is singular if and only if its determinant is zero; therefore, the eigenvalues of $\mat A$ are precisely the scalars $\lambda$ for which
+
+    \begin{equation}
+        \det\left(\mat{A} - \lambda \mat{I}\right) = 0\,.
+    \end{equation}
+
+    \begin{alertblock}{\textbf{\underline{Characteristic Polynomial:}}}\medskip
+        For a square matrix $\mathbf{A}$, $\det\left(\mat{A} - \lambda \mat{I}\right)$ is a polynomial of degree $n$ called the \alert{characteristic polynomial} of $\mat A$, i.e.,
+        \[
+            p(\lambda)
+            = \det(\lambda\mathbf{I} - \mathbf{A})
+            = \lambda^n + b_{n-1}\lambda^{n-1} + \cdots + b_1\lambda + b_0.
+        \]
+    \end{alertblock}
+
+
+    \begin{alertblock}{\textbf{\underline{Computing Eigenvalues:}}}\medskip
+        The eigenvalues of a square matrix $\mathbf{A}$, are obtained by computing the roots of $\det\left(\mat{A} - \lambda \mat{I}\right)$. Since a degree-$n$ polynomial has exactly $n$ roots (counting multiplicities), an $n \times n$ matrix can have $n$ eigenvalues.
+        \[
+            p(\lambda)
+            = \det(\lambda\mathbf{I} - \mathbf{A})
+            = \lambda^n + b_{n-1}\lambda^{n-1} + \cdots + b_1\lambda + b_0.
+        \]
+    \end{alertblock}
+
+    \bigskip
+    \begin{alertblock}{\textbf{\underline{In a more mathematical setting}}}\medskip
+        One can show that the set of eigenvalues of $\mat A$ is precisely the \textbf{spectrum} of $\mat A$, denoted $\sigma(\mat A)$.
+        An eigenvector is a dimension that remains invariant under pre-multiplication by $\mat A$.
+        \medskip
+        Let $\mathcal{S}$ be a subspace as $\mathcal{S} \subseteq \mathbb{C}^n$ with the property
+        \[
+            \mat{v} \in \mathcal{S} \;\;\Longrightarrow\;\; \mat{A v} \in \mathcal{S}
+        \]
+        Hence $\mathcal{S}$ is called an \alert{invariant subspace} of $\mat A$. The importance of eigenvector is that it is spanning this invariant subspace of $\mat A$.
+    \end{alertblock}
+
+    \bigskip
+    \begin{itemize}
+        \item If $\lambda \in \mathbb{R},\ \lambda > 0$:
+              $\mathbf{v}$ and $\mat{A}\mathbf{v}$ point in the same direction.
+        \item If $\lambda \in \mathbb{R},\ \lambda < 0$:
+              $\mathbf{v}$ and $\mat{A}\mathbf{v}$ point in opposite directions.
+        \item If $\lambda \in \mathbb{R},\ |\lambda| < 1$:
+              $\mat{A}\mathbf{v}$ is shorter than $\mathbf{v}$.
+        \item If $\lambda \in \mathbb{R},\ |\lambda| > 1$:
+              $\mat{A}\mathbf{v}$ is longer than $\mathbf{v}$.
+    \end{itemize}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Question}
+    \textbf{\red{What does it mean for a matrix $\mat{A}$ to have an eigenvalue equal to $0$?}}
+
+    \begin{alertblock}{\textbf{\underline{Answer:}}}\medskip
+        A matrix $\mat{A}$ has $0$ as an eigenvalue exactly when the equation
+        \begin{equation} \label{eq:eig-3}
+            \mat{A}\,\mathbf{v} = 0\,\mathbf{v}
+        \end{equation}
+        admits a nontrivial solution.
+        Since \eqref{eq:eig-3} reduces to
+        \[
+            \mat{A}\,\mathbf{v} = \mathbf{0},
+        \]
+        a nontrivial solution exists precisely when $\mat{A}$ is \emph{not invertible}.\\[1mm]
+
+        \begin{center}
+            \textbf{$\mat{A}$ has $0$ as an eigenvalue \quad$\Longleftrightarrow$\quad $\mat{A}$ is singular.}
+        \end{center}
+    \end{alertblock}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%% 
+% Note: 'fragile' is mandatory when using listings in a frame
+\begin{frame}[t,fragile,allowframebreaks]{Example: Eigen Decomposition of a Matrix --}
+    To compute eigenvalues:
+    \begin{equation*}
+        \mat{A}\mat{v}\:=\:\lambda\mat{v} \quad \Longrightarrow \left(A-\lambda\mat{I}\right)\mat{v} = \mat{0}
+    \end{equation*}
+    To have a nontrivial solution as $\mat{v}\neq\mat{0}$, it is,
+    \begin{equation*}
+        \det\left(A-\lambda\mat{I}\right) = \left|A-\lambda\mat{I}\right| =0
+    \end{equation*}
+    \medskip
+    \textbf{Example:}
+
+    \[
+        A =
+        \begin{bmatrix}
+            3 & 2 \\
+            1 & 2
+        \end{bmatrix}
+        \qquad
+        |A - \lambda I| = 0
+        \;\;\Longrightarrow\;\;
+        \lambda^{2} - 5\lambda + 4 = 0
+        \;\;\Longrightarrow\;\;
+        \text{Eigenvalues: } 1,\; 4
+    \]
+
+    One can also investigate that: $\mat{A}^{2} - 5\mat{A} + 4\mat{I} = \mat{0}.$
+    \vfill
+    \begin{equation*}
+        \mat{A}\mat{v}_1=\lambda_1\mat{v}_1\;\;\Longrightarrow\;\;
+        \begin{bmatrix}
+            3 & 2 \\
+            1 & 2
+        \end{bmatrix} \begin{bmatrix}x_1\\x_2\end{bmatrix}  = 1\times
+        \begin{bmatrix}v_1\\varbigtriangledown_2\end{bmatrix}
+    \end{equation*}
+
+    \begin{equation*}
+        \begin{cases}
+            2v_1+2v_2=0 \\
+            v_1+v_2=0
+        \end{cases}
+        \;\; \Longrightarrow\;\; v_1+v_2=0\;\;\text{for }v_1=1 \;\; \Longrightarrow\;\;v_2=-1
+    \end{equation*}
+    \begin{center}
+        One eigen-pair is   ($\lambda_1=1$, $\mat{x}_1=\begin{bmatrix}1\\-1\end{bmatrix}$)
+    \end{center}
+    and
+    \begin{equation*}
+        \mat{A}\mat{v}_2=\lambda_2\mat{v}_2\;\;\Longrightarrow\;\;
+        \begin{bmatrix}
+            3 & 2 \\
+            1 & 2
+        \end{bmatrix}
+        \begin{bmatrix}v_1\\v_2\end{bmatrix}
+        = 4\times   \begin{bmatrix}v_1\\v_2\end{bmatrix}
+    \end{equation*}
+
+    \begin{equation*}
+        \begin{cases}
+            -v_1+2v_2=0 \\
+            v_1-2v_2=0
+        \end{cases}
+        \;\; \Longrightarrow\;\; -v_1+2v_2=0\;\;\text{for }v_1=2 \;\; \Longrightarrow\;\;v_2=1
+    \end{equation*}
+
+    \begin{center} Second eigen-pair is   ($\lambda_2=4$, $\mat{v}_2=\begin{bmatrix}2 \\1
+            \end{bmatrix}$)
+    \end{center}
+
+    It is
+    \begin{equation*}
+        \begin{bmatrix}
+            3 & 2 \\
+            1 & 2
+        \end{bmatrix}
+        \begin{bmatrix}
+            1  & 2 \\
+            -1 & 1
+        \end{bmatrix}\:=\:
+        \begin{bmatrix}
+            1  & 2 \\
+            -1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 0 \\
+            0 & 4
+        \end{bmatrix}
+    \end{equation*}
+
+    In a general notation it is
+    \begin{equation*}
+        \mat{A}\mat{V}\:=\:\mat{V}\mat{\Lambda}
+    \end{equation*}
+    \medskip
+    where $\mat{V}$ is the matrix of eigenvectors and $\mat{\Lambda}$ is the diagonal matrix of eigenvalues.
+
+
+    $\mat{T}$ being invertible, we can obtain
+
+    \begin{equation*}
+        \begin{bmatrix}
+            1  & 2 \\
+            -1 & 1
+        \end{bmatrix}^{-1}\:
+        \begin{bmatrix}
+            3 & 2 \\
+            1 & 2
+        \end{bmatrix}
+        \begin{bmatrix}
+            1  & 2 \\
+            -1 & 1
+        \end{bmatrix}\:=\:
+        \begin{bmatrix}
+            1 & 0 \\
+            0 & 4
+        \end{bmatrix}
+    \end{equation*}
+    This is the process of diagonalization, where we have transformed the matrix $\mat{A}$ into a diagonal matrix $\mat{\Lambda}$ using the similarity transformation defined by $\mat{T}$.
+    \begin{equation*}
+        \mat{T}^{-1}\mat{A}\mat{T}\:=\:\mat{\Lambda}
+    \end{equation*}
+    \vfill
+
+
+    \pagebreak
+
+    \begin{alertblock}{\textbf{\underline{Interpretation:}}}\medskip
+        It express that the action of $\mat{A}$ on the eigenvectors $\mathbf{v}_i$
+        \[\mat{A}\mathbf{v}_i = \lambda_i\mathbf{v}_i\]
+        is simply to scale them by their corresponding eigenvalues $\lambda_i$. In other words, each eigenvector $\mathbf{v}_i$ is an invariant direction under the transformation defined by $A$, and the eigenvalue $\lambda_i$ indicates how much $A$ stretches or compresses along that direction.
+
+        \medskip
+        The matrix equation can be written as:
+        \[
+            A\,\left[\, \mathbf{v}_1 \;\; \cdots \;\; \mathbf{v}_n \,\right]
+            =
+            \left[\, \mathbf{v}_1 \;\; \cdots \;\; \mathbf{v}_n \,\right]
+            \begin{bmatrix}
+                \lambda_1             \\
+                 & \ddots             \\
+                 &        & \lambda_n
+            \end{bmatrix}.
+        \]
+    \end{alertblock}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t, fragile]{Distinct eigenvalues}
+
+    \begin{alertblock}{\textbf{\underline{Fact:}}}\medskip
+        If $A$ has distinct eigenvalues, then $A$ is diagonalizable.
+    \end{alertblock}
+
+    \begin{itemize}
+        \item \alert{Distinct eigenvalues} means $\lambda_i \neq \lambda_j$ for $i \neq j$.
+
+        \item The converse is \alert{not} true:
+              a matrix can have repeated eigenvalues and still be diagonalizable.
+    \end{itemize}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%
+% Note: 'fragile' is mandatory when using listings in a frame
+\begin{frame}[t,fragile]{Diagonalization}
+    Given an $n \times n$ square matrix $\mathbf{A}$ with $n$ distinct eigenvalues.
+
+    \[
+        \mathbf{A}\,\mathbf{T} \;=\; \mathbf{T}\,\mathbf{\Lambda}
+    \]
+
+    If $\mat{T}$ is full rank (i.e., invertible), then $A$ is diagonalizable, We can obtain:
+    \[
+        \mathbf{T}^{-1}\,\mathbf{A}\mathbf{T} \:=\: \mathbf{\Lambda}\:=\:\operatorname{diad}\left(\lambda_1,\lambda_2,\dots,\lambda_n\right)
+    \]
+    Hence the name \textbf{Diagonalization}.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Not all matrices are diagonalizable}
+
+    \begin{alertblock}{Example:}\medskip
+        Given the matrix  \hspace*{9pc}
+        $ A =
+            \begin{bmatrix}
+                0 & 1 \\
+                0 & 0
+            \end{bmatrix}
+        $
+    \end{alertblock}
+
+    \begin{itemize}
+        \item characteristic polynomial:\hspace*{12pt}
+              $P(\lambda) = \lambda^{2} \quad \Rightarrow \quad \lambda = 0 \text{ is the only eigenvalue}$
+
+        \item eigenvectors satisfy \(A\mathbf{v} = 0\mathbf{v} = \mathbf{0}\), i.e.,
+              \[
+                  \begin{bmatrix}
+                      0 & 1 \\
+                      0 & 0
+                  \end{bmatrix}
+                  \begin{bmatrix}
+                      v_1 \\
+                      v_2
+                  \end{bmatrix}
+                  =
+                  \begin{bmatrix}
+                      0 \\
+                      0
+                  \end{bmatrix}
+              \]
+
+        \item so all eigenvectors must satisfy \(v_2 = 0\), hence
+              \[
+                  \mathbf{v} =
+                  \begin{bmatrix}
+                      v_1 \\[2pt]
+                      0
+                  \end{bmatrix},
+                  \qquad v_1 \neq 0
+              \]
+
+        \item thus, $\mat A$ has only one linearly independent eigenvector
+
+        \item therefore, $\mat A$ is \textbf{not diagonalizable}
+        \item if $\mat A$ is not diagonalizable, it is sometimes called \textbf{\red{defective}}
+    \end{itemize}
+    \vfill
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t, fragile]{Diagonalization of Symmetric Real Matrices}
+    Let $\mathbf{A}_{n\times n}$ be a real symmetric matrix, i.e., $\mathbf{A}^T = \mathbf{A}$.
+    Then $\mathbf{A}$ admits an orthogonal diagonalization:
+    \[
+        \mathbf{A} = \mathbf{V}\,\mathbf{\Lambda}\,\mathbf{V}^{T},
+    \]
+    where $\mathbf{T}^{T} = \mathbf{T}^{-1}$ and
+    \[
+        \mathbf{T}^{T}\mathbf{T} = \mathbf{T}\mathbf{T}^{T} = \mathbf{I}.
+    \]
+    Here, $\mathbf{T}$ contains the orthonormal eigenvectors of $\mathbf{A}$, and
+    $\mathbf{\Lambda}$ is the diagonal matrix of eigenvalues.
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%%   
+\begin{frame}<0>{Invariant Subspaces and Similarity}
+
+    \textbf{The Fundamental Relation}
+    \vspace{0.2cm}
+    Let $A \in \mathbb{C}^{n \times n}$ and $B \in \mathbb{C}^{k \times k}$. Consider the matrix equation:
+    \[ AX = XB, \quad X \in \mathbb{C}^{n \times k} \]
+
+    \hrule
+    \vspace{0.4cm}
+
+    \begin{block}{1. Invariant Subspaces}
+        The range of $X$, denoted $\text{ran}(X)$, is an \textbf{invariant subspace} under $A$.
+        If $v \in \text{ran}(X)$, then $Av \in \text{ran}(X)$.
+    \end{block}
+
+    \begin{block}{2. Eigenvalue Relationship}
+        If $(\lambda, y)$ is an eigenpair of $B$ (i.e., $By = \lambda y$), then:
+        \[ A(Xy) = X(By) = \lambda(Xy) \]
+        If $Xy \neq 0$, then $\lambda$ is an eigenvalue of $A$ with eigenvector $Xy$.
+    \end{block}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%%  
+\begin{frame}[t,fragile]{Similarity Transformations}
+    %   
+    \begin{itemize}
+        \item \textbf{Similarity:}
+              If $Q$ is \textbf{square} and \textbf{nonsingular}, then
+              \[
+                  B = Q^{-1} A Q .
+              \]
+              In this case, $A$ and $B$ are said to be \textbf{similar}
+              (denoted $A \sim B$).
+
+              \medskip
+
+        \item \textbf{Spectrum Inclusion:}
+              If $Q$ has \textbf{full column rank} (but is not necessarily square),
+              then every eigenvalue of $B$ is an eigenvalue of $A$:
+              \[
+                  \lambda(B) \subseteq \lambda(A).
+              \]
+
+              \medskip
+
+        \item \textbf{Spectral Equality:}
+              If $Q$ is \textbf{invertible} (square and nonsingular), then similar matrices
+              share exactly the same eigenvalues:
+              \[
+                  \lambda(A) = \lambda(B).
+              \]
+
+    \end{itemize}
+
+    \begin{alertblock}{Takeaway:}\smallskip
+        The matrix $Q$ acts as a \textbf{change of basis}, translating the
+        representation of $B$ into the coordinate system of $A$ while preserving
+        its spectral structure.
+    \end{alertblock}
+    \vfill
+
+\end{frame}
+
+
+%%EoF

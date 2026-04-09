@@ -19,50 +19,90 @@
 %    }
 %}
 %%============================================================================
-\documentclass[8pt,aspectratio=169]{beamer}
-
-% Custom Beamer settings (your local style file)
+\documentclass[9pt,aspectratio=169]{beamer}
 \RequirePackage{./.xbmr}
 
-% Course Information
-\title[EDA 898]{EDA 898}
-\subtitle{Reviews of Linear Algebra and Matrix Computations}
-\author{Dr.~Behzad Nouri}
-\date{Winter 2026}
+\title[EDA chair]{\Huge \textbf{\textcolor{darkgray}{A Vision for the Siemens EDA Chair}}}
+
+\subtitle{{\Large \textit{Bridging Industrial Reality with Academic Potentials:}}\\[6pt]
+{\Large \textit{A Life's Mission}}}
+% Author Information
+\author{\textbf{Behzad Nouri, Ph.D., P.Eng.} \\
+    {\small Adjunct Research Professor | Lead R\&D Engineer} \\[6pt]
+    {\footnotesize \textcolor{gray} University of Saskatchewan | Siemens EDA}
+    }
+\date{April 2026}
+
+
+\begin{comment}
+"I chose this title because my career has been defined by the space between these two worlds. From my doctoral work at Carleton to leading R&D teams in Silicon Valley and Saskatoon, I have viewed the gap between mathematical theory and industrial scale not as a barrier, but as a mission. Today, I’ll show you how we will lead that mission at USask."
+\end{comment}
+
 
 \begin{document}
+%% ===========================
+%%  FrontMatters
+%% ===========================
+\addtitlepage
+\addtoc
 
-% In handout mode, the title page is essential for the first slide slot
-%%%%%%%%%%%%%%%%%%%%%%
-%%%     Slide      %%%
-%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \titlepage
-\end{frame}
+\input{bridging-gap.tex}
+\input{excellence.tex}
+\input{journals.tex}
+\input{conferences.tex}
+\input{qualitative-impact.tex}
+\input{hqp}
 
-
-%%%%%%%%%%%%%%%%%%%%%%
-%%%     Slide      %%%
-%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile,t]{Prologue}
-  In the next slides, we will review some fundamental concepts in linear algebra and matrix analysis that are essential for understanding the mathematical foundations of EDA. We will cover topics such as eigenvalues, eigenvectors, diagonalization and matrix functions as they are needed in this EDA course. These concepts will provide the necessary background for analyzing and designing complex systems in the context of electronic design automation.
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%   Sections:
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{./xch/eigen-decomposition.tex}
-\input{./xch/matrix-functions.tex}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%     Bibliography Slide     %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[allowframebreaks]{References}
-  \nocite{*}
-  \printbibliography
-\end{frame}
-
+%% ===========================
+%%  BackMatters
+%% ===========================
+\input{xthank-you}
 \end{document}
+
+% ### Non-Intrusive Variability Analysis with Parallelism in Stochastic Space and Time Domain
+
+% I developed an efficient method for **time-domain variability analysis** of circuits described by large systems of equations with multiple stochastic parameters. The proposed technique combines **Stochastic Collocation (SC)** with **Numerical Inversion of the Laplace Transform (NILT)**, enabling **embarrassingly parallel computation** in both the stochastic space and the time domain—an advantage not achievable with conventional time-stepping integration methods.
+
+% The SC algorithm selects parameter samples using sparse grids, ensuring parsimonious coverage of the stochastic space. At each sample node, NILT is used to compute the time-domain response independently across time instances, eliminating the need for sequential time-marching and repeated interpolation. This structure allows full exploitation of parallel computing resources.
+
+% Benchmark results confirm that the proposed method achieves **speedups of up to 150×** compared to standard Monte Carlo approaches based on trapezoidal integration [C1]. The method maintains high accuracy while significantly reducing simulation time, making it well-suited for large-scale variability-aware analysis in industrial design environments.
+
+% These contributions enable scalable and robust transient analysis under uncertainty, supporting faster design iterations, improved reliability, and broader design space exploration in advanced circuit simulation workflows.
+
+% bedide all above cases I also directly contributed to the development of EDA Tools. Over the past six years, I have spent four years as an **R&D engineer in the Electronic Design Automation (EDA) industry**, contributing to advanced simulation technologies. My work focused on **post-layout simulation**, **RF and S-parameter techniques**, and **baseband macromodeling for photonic designs**. These contributions underwent extensive regression testing against industry standards and were successfully integrated into two market-leading EDA tools: **Spectre** and **Solido-AFS**.
+
+% Due to confidentiality agreements with my employers, I am unable to disclose specific details. However, the incorporation of my work into commercial tools used globally by semiconductor companies reflects its robustness, industrial relevance, and impact on real-world design workflows.
+% [M1,M2,M3,M4,M5]
+
+%% ===================================
+%%     Sections:
+%% ===================================
+
+% \subimport{./sec1-intro}{intro.tex}
+%% ===================================================
+%% ====   Section: BackMatters
+%% ===================================================
+%\addbibilio
+%\addlastslide\begin{comment}
+
+%% ===================
+%%     Slide: Thank you
+%% ===================
+% \setbeamercolor{background canvas}{bg=black!3}   % Soft off-white background (eye-friendly)
+% \begin{frame}[plain,noframenumbering]
+% 	\begin{center}
+% 		\vspace{1cm}
+% 		{\LARGE \textbf{\color{darkgray}{Bridging Industrial Reality with Academic Potentials}}} \\
+% 		\vspace{0.2cm}
+% 		{\Large \textit{A vision \& a mission}}
+
+% 		\vfill
+% 		\textbf{\green{\Huge\bfseries Thank you.}} \\
+
+% 		\vfill
+% 		\textbf{Behzad Nouri, Ph.D., P.Eng.} \\
+% 		{\small Adjunct Research Professor | Lead R\&D Engineer}
+% 		\vfill
+% 	\end{center}
+% \end{frame}
+

@@ -1,0 +1,727 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Section:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Selected Research Highlights: Quantitative Impact and Results}
+
+\begin{comment}
+\subsection{High-Impact Breakthrough: Overcoming the UQ Bottleneck \\
+	Accelerating Uncertainty Quantification in Nonlinear Circuits Simulation}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Note       %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}<0>{NOTES TO PRESENTER:}
+	"In the world of 5G and high-speed design, 'worst-case corners' aren't enough—we need Monte Carlo. But as we all know, Newton-Raphson iterations at every sample point kill performance. My research on parameterized DEIM (Slide 10) attacks this specific bottleneck. By achieving a 50x speedup, we allow engineers to actually run these checks before tape-out, potentially saving millions in silicon re-spins."
+\end{frame}
+\end{comment}
+
+\begin{comment}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Note       %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}<0>{NOTES TO PRESENTER:}
+	"In the world of 5G and high-speed design, 'worst-case corners' aren't enough—we need Monte Carlo. But as we all know, Newton-Raphson iterations at every sample point kill performance. My research on parameterized DEIM (Slide 10) attacks this specific bottleneck. By achieving a 50x speedup, we allow engineers to actually run these checks before tape-out, potentially saving millions in silicon re-spins."While my previous slide discussed DC-centric bottlenecks, our work in the Frequency Domain is equally transformative. In Harmonic Balance, the 'Transformation Tax'—constantly switching between time and frequency—is what prevents us from simulating large-scale RFICs. By extending DEIM directly into the HB framework (Slide 11), we achieved a 30x runtime reduction. For a design team, this is the difference between waiting a week for results or having them before the afternoon coffee break."
+\end{frame}
+\end{comment}
+
+\begin{comment}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Note       %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}<0>{NOTES TO PRESENTER:}
+	"In my final technical highlight (Slide 12), I want to address the most critical bottleneck for any EDA tool: Stability. We can make a solver 100x faster, but if it crashes due to an unstable reduced-order model, it will never be used in production. My research ensures Stability by Construction. By solving the stability constraint as a generalized eigenproblem rather than a slow optimization task, we provide a robust, sparse, and fail-safe model for active circuits. This is the level of mathematical integrity I intend to bring to the Siemens EDA Chair."
+
+	Why this completes your Technical Narrative:
+	Slide 10 (UQ): Proves you can handle Statistical Complexity.
+
+	Slide 11 (HB): Proves you can handle Domain Complexity (RF/Periodic).
+
+	Slide 12 (Stability): Proves you can handle Numerical Integrity.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Note       %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}<0>{NOTES TO PRESENTER:}
+	"In this final highlight (Slide 13), we look at the intersection of Electromagnetics and Circuits. PEEC modeling is essential for high-frequency design, but the propagation delays turn it into a nightmare of Neutral Delay Differential Equations. My research replaces slow, unstable time-stepping with a compact PMOR and NILT-based solver (Slide 13). The result? We achieved a three-order-of-magnitude speedup. This effectively moves large-scale retarded systems from the 'prohibitively slow' category into the 'daily design task' category."
+
+	Summary of your 4-Slide Technical "Punch":
+	Slide 10 (DC/UQ): 50x speedup for Statistical Analysis.
+
+	Slide 11 (HB/Periodic): 30x speedup for RFIC Analysis.
+
+	Slide 12 (Stability): Guaranteed Integrity for Active Circuits.
+
+	Slide 13 (PEEC/Delay): 1000x speedup for EM/Retarded Systems.
+\end{frame}
+\end{comment}
+
+\begin{comment}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%     Slide      %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{EM-Circuit Co-Simulation: Delayed PEEC Systems -- PMOR and NILT for High-Frequency Retarded Networks}
+
+	\lmv{-1}
+
+	\begin{mybox}
+		\nlt
+		B.~Nouri, L.~Lombardi, Y.~Tao, M.~Nakhla, F.~Ferranti, and G.~Antonini,
+		``Parameterized model order reduction of delayed PEEC circuits,''
+		\emph{IEEE Trans. Electromagn. Compat.},
+		vol.~62, no.~3, pp.~859--869, Jun.~2020.
+	\end{mybox}
+
+	\vspace{0.3cm}
+
+	\begin{columns}[T]
+
+		\begin{column}{0.65\textwidth}
+			\small
+			\textbf{The Challenge: Neutral Delay DEs (NDDEs)}
+			\begin{itemize}
+				\item High-speed interconnects require PEEC with retardation.
+				\item Time-stepping is bottlenecked by constant interpolation.
+				\item Instability and passivity issues are common in NDDEs.
+			\end{itemize}
+
+			\vspace{0.2cm}
+
+			\textbf{The Innovation: Decoupled PMOR + NILT}
+			\begin{itemize}
+				\item \textbf{Compact Subspaces:}
+				      Frequency-independent moment matching for minimal ROM size.
+				\item \textbf{NILT Solver:}
+				      Response evaluation in the Laplace domain, bypassing time-domain interpolation entirely.
+			\end{itemize}
+		\end{column}
+
+		\begin{column}{0.3\textwidth}
+			\begin{alertblock}{{\Large\green{Measured Impact:}}}
+				\begin{mybox}[red]
+					\centering
+					\vspace{0.1cm}
+					{\huge \textbf{1000$\times$}}\\
+					\small \textbf{Simulation Speedup}\\[0.4cm]
+					{\large \textbf{NILT vs.\ NDDE}}\\
+					\small \textbf{Solver Robustness}
+				\end{mybox}
+			\end{alertblock}
+		\end{column}
+
+	\end{columns}
+
+	\vfill
+	\begin{center}
+		\red{\bfseries\large
+			``Scaling the simulation of retarded systems by three orders of magnitude
+			for high-frequency SI/PI verification.''}
+	\end{center}
+\end{frame}
+\end{comment}
+
+% %%%%%%%%%%%%%%%%%%%%%%
+% %%%     Slide      %%%
+% %%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[t, fragile]{\textbf{UQ:~} Efficient DC-Centric Simulation of Nonlinear Systems Under Uncertainty}
+% 	\lmv{-1}
+% 	\begin{mybox}
+% 		\nlt B.~Nouri, E.~Gad, A.~Nouri, and M.~Nakhla, ``{DC}-centric parameterized reduced-order model via moment-based interpolation projection {(MIP)} algorithm,'' \emph{{IEEE} Trans. Compon., Packag., Manuf. Technol.}, vol.~10, no.~8, pp.~1348--1357, Aug.~2020.
+% 	\end{mybox}
+% 	\vspace{0.4cm}
+% 	\begin{columns}[T]
+% 		\begin{column}{0.65\textwidth}
+
+% 			\textbf{Challenge: The Newton-Raphson Bottleneck}
+% 			\begin{itemize}
+% 				\item Standard MC is too slow for SI/PI \& RF.
+% 				\item Iterative solvers recompute DC points for every sample.
+% 				\item Evaluation of reduced nonlinear terms is the primary cost.
+% 			\end{itemize}
+
+% 			\vspace{0.2cm}
+% 			\textbf{Solution: Parameterized DEIM Formulation}
+% 			\begin{itemize}
+% 				\item Developed a surrogate using \textbf{DC-centric DEIM}.
+% 				\item Directly exploits structurally parameterized moments.
+% 			\end{itemize}
+% 		\end{column}
+
+% 		\begin{column}{0.3\textwidth}
+% 			\begin{alertblock}{\green{\bfseries\Large~~~Measured Impact:}}
+% 				\begin{mybox}[red]
+% 					\centering
+% 					\vspace{0.1cm}
+% 					\noindent{\huge\textbf{Up to 50$\times$}}\par\smallskip
+% 					\noindent{\small\textbf{Simulation Speed-up}}\par
+% 					\vspace{0.4cm}
+% 					\noindent {\large\textbf{Zero-Risk}} \par\smallskip
+% 					\noindent \small \textbf{Tape-out Readiness}
+% 				\end{mybox}
+% 			\end{alertblock}
+% 			\vspace{0.1cm}
+% 		\end{column}
+% 	\end{columns}
+
+% 	\vfill
+% 	\begin{center}
+% 		\red{\bfseries \large %
+% 			"Moving UQ from a 'prohibitive cost' to a 'practical design-stage tool' for SI/PI \& RF systems."
+% 		}
+% 	\end{center}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%
+% %%%     Slide      %%%
+% %%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{\textbf{HB:~} RFIC Innovation: Efficient Periodic Steady-State (PSS) Analysis}
+% 	\lmv{-1}
+% 	\begin{mybox}
+% 		\nlt B.~Nouri, E.~Gad, A.~Nouri, and M.~Nakhla, ``Parameterized periodic steady-state analysis via reduced-order modelling,'' \emph{{IEEE} Trans. Microw. Theory Tech.}, vol.~69, no.~11, pp.~4825--4836, Nov.~2021.
+% 	\end{mybox}
+
+% 	\vspace{0.3cm}
+
+% 	\begin{columns}[T]
+% 		\begin{column}{0.6\textwidth}
+% 			\small
+% 			\textbf{Problem: The "Transformation Tax"}
+% 			\begin{itemize}
+% 				\item HB analysis is essential for RF/Microwave steady-state.
+% 				\item Traditional solvers "ping-pong" between Time and Frequency domains for nonlinear terms.
+% 				\item FFT/IFFT operations dominate the CPU time.
+% 			\end{itemize}
+
+% 			\vspace{0.2cm}
+% 			\textbf{Innovation: Direct Harmonic Domain DEIM}
+% 			\begin{itemize}
+% 				\item Evaluation of surrogates directly in the harmonic domain.
+% 				\item Eliminates domain conversion overhead entirely.
+% 				\item Successfully benchmarked on large-scale RF designs.
+% 			\end{itemize}
+% 		\end{column}
+
+% 		\begin{column}{0.3\textwidth}
+% 			\begin{alertblock}{\Large\green{~~~Measured Impact:}}
+% 				\begin{mybox}[red]
+% 					\centering				\centering
+% 					\vspace{0.1cm}
+% 					{\huge \textbf{Up to 30$\times$}} \\
+% 					\small \textbf{Total Speedup} \\
+% 					\vspace{0.4cm}
+% 					{\large \textbf{Days $\rightarrow$ Hours}} \\
+% 					\small \textbf{Design Cycle Time}
+% 				\end{mybox}
+% 			\end{alertblock}
+% 			\vspace{0.2cm}
+% 		\end{column}
+% 	\end{columns}
+% 	\vfill
+% 	\begin{center}
+% 		\red{\bfseries\large %
+% 			"Transforming infeasible multi-day simulations into routine, automated verification tasks for high-yield RFICs."}
+% 	\end{center}
+% \end{frame}
+
+% % %%%%%%%%%%%%%%%%%%%%%%
+% % %%%     Slide      %%%
+% % %%%%%%%%%%%%%%%%%%%%%%
+% % \begin{frame}{EM-Circuit Co-Simulation: Delayed PEEC Systems -- PMOR and NILT for High-Frequency Retarded Networks}
+
+% % \lmv{-1}
+
+% % \begin{mybox}
+% % 	\nlt
+% % 	B.~Nouri, L.~Lombardi, Y.~Tao, M.~Nakhla, F.~Ferranti, and G.~Antonini,
+% % 	``Parameterized model order reduction of delayed PEEC circuits,''
+% % 	\emph{IEEE Trans. Electromagn. Compat.},
+% % 	vol.~62, no.~3, pp.~859--869, Jun.~2020.
+% % \end{mybox}
+
+% %%%%%%%%%%%%%%%%%%%%%%
+% %%%     Slide      %%%
+% %%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%% Slide: Stability by Construction
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[t]{Stability by Construction: Active Circuit Macromodeling}
+% \lmv{-1}
+% \begin{mybox}
+% 	\scriptsize
+% 	G. Ghaly, E. Gad, M. Nakhla, and \textbf{B. Nouri}, ``An Algorithmic Approach to Formulate Well-Conditioned Stable Reduced-Order Models of Active Circuits,'' \textit{IEEE Trans. CPMT}.
+% \end{mybox}
+
+% \vspace{1ex}
+
+% \begin{columns}[T, onlytextwidth]
+
+% %% LEFT COLUMN: The Narrative
+% \begin{column}{0.62\textwidth}
+% 	\small
+% 	\textbf{\textcolor{blue!80!black}{The Problem: Simulation Divergence}}
+% 	\begin{itemize}
+% 		\item Active circuits frequently yield unstable ROMs under standard Galerkin projection.
+% 		\item Results in catastrophic simulation failure during transient or sensitivity analysis.
+% 	\end{itemize}
+
+% 	\vspace{2.5ex}
+
+% 	\textbf{\textcolor{blue!80!black}{The Innovation: Lyapunov-Based Projection}}
+% 	\begin{itemize}
+% 		\item Left-projection matrix ($V$) specifically constructed as a function of $W$ to satisfy \textbf{Lyapunov stability}.
+% 		\item Formulated as an efficient \textbf{generalized eigenproblem}; avoids costly non-linear optimization.
+% 		\item Native ill-conditioning correction for extreme numerical robustness.
+% 	\end{itemize}
+% \end{column}
+
+% %% RIGHT COLUMN: The Result
+% \begin{column}{0.34\textwidth}
+% \setbeamercolor{block title example}{fg=white, bg=red!20%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%% Slide: Stability by Construction
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[t]{Stability by Construction: Active Circuit Macromodeling}
+% 	\vspace{1ex}
+
+% 	% Clean Citation Block
+% 	\setbeamercolor{block body}{bg=gray!10, fg=black}
+% 	\begin{block}{}
+% 		\scriptsize
+% 		G. Ghaly, E. Gad, M. Nakhla, and \textbf{B. Nouri}, ``An Algorithmic Approach to Formulate Well-Conditioned Stable Reduced-Order Models of Active Circuits,'' \textit{IEEE Trans. CPMT}.
+% 	\end{block}
+
+% 	\vspace{1ex}
+
+% 	\begin{columns}[T, onlytextwidth]
+
+% 		%% LEFT COLUMN: The Narrative
+% 		\begin{column}{0.62\textwidth}
+% 			\small
+% 			\textbf{\textcolor{blue!80!black}{The Problem: Simulation Divergence}}
+% 			\begin{itemize}
+% 				\item Active circuits frequently yield unstable ROMs under standard Galerkin projection.
+% 				\item Results in catastrophic simulation failure during transient or sensitivity analysis.
+% 			\end{itemize}
+
+% 			\vspace{2.5ex}
+
+% 			\textbf{\textcolor{blue!80!black}{The Innovation: Lyapunov-Based Projection}}
+% 			\begin{itemize}
+% 				\item Left-projection matrix ($V$) specifically constructed as a function of $W$ to satisfy \textbf{Lyapunov stability}.
+% 				\item Formulated as an efficient \textbf{generalized eigenproblem}; avoids costly non-linear optimization.
+% 				\item Native ill-conditioning correction for extreme numerical robustness.
+% 			\end{itemize}
+% 		\end{column}
+
+% 		%% RIGHT COLUMN: The Result
+% 		\begin{column}{0.34\textwidth}
+% 			\setbeamercolor{block title example}{fg=white, bg=green!45!black}
+% 			\setbeamercolor{block body example}{bg=green!5, fg=black}
+% 			\begin{exampleblock}{\centering \scriptsize \textbf{KEY BREAKTHROUGHS}}
+% 				\centering
+% 				\vspace{1ex}
+% 				{\huge \textbf{60$\times$}} \\
+% 				\footnotesize \textbf{Total Speedup} \\
+% 				\vspace{1.5ex}
+% 				\textcolor{green!30}{\rule{0.8\textwidth}{0.5pt}} \\
+% 				\vspace{1.5ex}
+% 				\scriptsize
+% 				\textbf{Guaranteed Preservation:} \\
+% 				\textcolor{blue!80!black}{\textbf{Asymptotic Stability}} \\
+% 				\textit{(By Construction)}
+
+% 				\vspace{2ex}
+
+% 				\textcolor{blue!80!black}{\textbf{Numerical Robustness}} \\
+% 				\textit{Well-Conditioned ROMs}
+% 				\vspace{1ex}
+% 			\end{exampleblock}
+% 		\end{column}
+% 	\end{columns}
+
+% 	\vfill
+% 	\vfill	%% Visionary Footer
+% 	\begin{beamercolorbox}[wd=\textwidth, sep=1.2ex, center, rounded=true]{block body example}
+% 		\small \itshape \textcolor{blue!80!black}{"Moving beyond 'fast' simulation to 'guaranteed' simulation for large-scale active networks."}
+% 	\end{beamercolorbox}
+% 	\vspace{1ex}
+% 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 	%%% Slide: Stability by Construction
+% 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 	\begin{frame}[t]{Stability by Construction: Active Circuit Macromodeling}
+% 		\vspace{1ex}
+
+% 		% Clean Citation Block
+% 		\setbeamercolor{block body}{bg=gray!10, fg=black}
+% 		\begin{block}{}
+% 			\scriptsize
+% 			G. Ghaly, E. Gad, M. Nakhla, and \textbf{B. Nouri}, ``An Algorithmic Approach to Formulate Well-Conditioned Stable Reduced-Order Models of Active Circuits,'' \textit{IEEE Trans. CPMT}.
+% 		\end{block}
+
+% 		\vspace{1ex}
+
+% 		\begin{columns}[T, onlytextwidth]
+
+% 			%% LEFT COLUMN: The Narrative
+% 			\begin{column}{0.62\textwidth}
+% 				\small
+% 				\textbf{\textcolor{blue!80!black}{The Problem: Simulation Divergence}}
+% 				\begin{itemize}
+% 					\item Active circuits frequently yield unstable ROMs under standard Galerkin projection.
+% 					\item Results in catastrophic simulation failure during transient or sensitivity analysis.
+% 				\end{itemize}
+
+% 				\vspace{2.5ex}
+
+% 				\textbf{\textcolor{blue!80!black}{The Innovation: Lyapunov-Based Projection}}
+% 				\begin{itemize}
+% 					\item Left-projection matrix ($V$) specifically constructed as a function of $W$ to satisfy \textbf{Lyapunov stability}.
+% 					\item Formulated as an efficient \textbf{generalized eigenproblem}; avoids costly non-linear optimization.
+% 					\item Native ill-conditioning correction for extreme numerical robustness.
+% 				\end{itemize}
+% 			\end{column}
+
+% 			%% RIGHT COLUMN: The Result
+% 			\begin{column}{0.34\textwidth}
+% 				\setbeamercolor{block title example}{fg=white, bg=green!45!black}
+% 				\setbeamercolor{block body example}{bg=green!5, fg=black}
+% 				\begin{exampleblock}{\centering \scriptsize \textbf{KEY BREAKTHROUGHS}}
+% 					\centering
+% 					\vspace{1ex}
+% 					{\huge \textbf{60$\times$}} \\
+% 					\footnotesize \textbf{Total Speedup} \\
+% 					\vspace{1.5ex}
+% 					\textcolor{green!30}{\rule{0.8\textwidth}{0.5pt}} \\
+% 					\vspace{1.5ex}
+% 					\scriptsize
+% 					\textbf{Guaranteed Preservation:} \\
+% 					\textcolor{blue!80!black}{\textbf{Asymptotic Stability}} \\
+% 					\textit{(By Construction)}
+
+% 					\vspace{2ex}
+
+% 					\textcolor{blue!80!black}{\textbf{Numerical Robustness}} \\
+% 					\textit{Well-Conditioned ROMs}
+% 					\vspace{1ex}
+% 				\end{exampleblock}
+% 			\end{column}
+% 		\end{columns}
+
+% 		\vfill
+
+% 		%% Visionary Footer
+% 		\begin{beamercolorbox}[wd=\textwidth, sep=1.2ex, center, rounded=true]{block body example}
+% 			\small \itshape \textcolor{blue!80!black}{"Moving beyond 'fast' simulation to 'guaranteed' simulation for large-scale active networks."}
+% 		\end{beamercolorbox}
+% 		\vspace{1ex}
+% 	\end{frame}\input{excellence.tex}!black}
+% 	\setbeamercolor{block body example}{bg=green!5, fg=black}
+% 	\begin{exampleblock}{\centering \scriptsize \textbf{KEY BREAKTHROUGHS}}
+% 		\centering
+% 		\vspace{1ex}
+% 		{\huge \textbf{60$\times$}} \\
+% 		\footnotesize \textbf{Total Speedup} \\
+% 		\vspace{1.5ex}
+% 		\textcolor{green!30}{\rule{0.8\textwidth}{0.5pt}} \\
+% 		\vspace{1.5ex}
+% 		\scriptsize
+% 		\textbf{Guaranteed Preservation:} \\
+% 		\textcolor{blue!80!black}{\textbf{Asymptotic Stability}} \\
+% 		\textit{(By Construction)}
+
+% 		\vspace{2ex}
+
+% 		\textcolor{blue!80!black}{\textbf{Numerical Robustness}} \\
+% 		\textit{Well-Conditioned ROMs}
+% 		\vspace{1ex}
+% 	\end{exampleblock}
+% 	\end{column}
+% 	\end{columns}
+
+% 	\vfill
+
+% 	%% Visionary Footer
+% 	\begin{beamercolorbox}[wd=\textwidth, sep=1.2ex, center, rounded=true]{block body example}
+% 		\large \itshape \textcolor{red!80!black}{"Moving beyond 'fast' simulation to 'guaranteed' simulation for large-scale active networks."}
+% 	\end{beamercolorbox}
+% 	\vspace{1ex}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%% Slide: EM-Circuit Co-Simulation (Delayed PEEC Systems)
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[t]{EM-Circuit Co-Simulation: Delayed PEEC Systems}
+% 	\framesubtitle{\textcolor{red}{PMOR and NILT for High-Frequency Retarded Networks}}
+
+% 	\lmv{-1}
+% 	\begin{mybox}
+% 		B. Nouri, L. Lombardi, et al., ``Parameterized model order reduction of delayed PEEC circuits,''
+% 		\textit{IEEE Transactions on Electromagnetic Compatibility}, vol. 62, no. 3, Jun. 2020.
+% 	\end{mybox}
+
+% 	\vspace{1ex}
+
+% 	\begin{columns}[T, onlytextwidth]
+
+% 		%% LEFT COLUMN: Technical Narrative
+% 		\begin{column}{0.62\textwidth}
+% 			\small
+% 			\textbf{\textcolor{blue!80!black}{The Challenge: Neutral Delay DEs (NDDEs)}}
+% 			\begin{itemize}
+% 				\item High-speed retardation requires Partial Element Equivalent Circuits.
+% 				\item Time-stepping is bottlenecked by intensive interpolation.
+% 				\item Traditional NDDE solvers suffer from passivity/stability crises.
+% 			\end{itemize}
+
+% 			\vspace{2ex}
+
+% 			\textbf{\textcolor{blue!80!black}{The Innovation: Decoupled PMOR + NILT}}
+% 			\begin{itemize}
+% 				\item \textbf{Compact Subspaces:} Frequency-independent moment matching reduces ROM size to minimal dimensions.
+% 				\item \textbf{NILT Solver:} Direct Laplace-domain evaluation, eliminating time-domain interpolation overhead entirely.
+% 			\end{itemize}
+% 		\end{column}
+
+% 		%% RIGHT COLUMN: The "Hero" Metric
+% 		\begin{column}{0.34\textwidth}
+% 			\setbeamercolor{block title alert}{bg=red!20!black, fg=white}
+% 			\begin{alertblock}{\centering \textbf{MEASURED IMPACT}}
+% 				\centering
+% 				\vspace{1ex}
+% 				{\huge \textbf{1000$\times$}} \\
+% 				\footnotesize \textbf{Simulation Speedup} \\
+% 				\vspace{1.5ex}
+% 				\textcolor{gray!50}{\rule{0.8\textwidth}{0.4pt}} \\
+% 				\vspace{1.5ex}
+% 				\small \textbf{NILT vs. NDDE} \\
+% 				\footnotesize Robust Solver Execution
+% 				\vspace{1ex}
+% 			\end{alertblock}
+% 		\end{column}
+% 	\end{columns}
+
+% 	\vfill
+
+% 	%% Visionary Footer
+% 	\begin{beamercolorbox}[wd=\textwidth, sep=1.2ex, center, rounded=true]{block body example}
+% 		\large \itshape \textcolor{red!80!black}{"Scaling retarded system simulation by three orders of magnitude for industrial SI/PI verification."}
+% 	\end{beamercolorbox}
+% 	\vspace{1ex}
+% 	\vfill
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% SLIDE 1: UQ - Nonlinear Systems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{UQ: Efficient Simulation of Nonlinear Systems}
+	\vspace{1ex}
+
+	% Consistent Citation Style
+	\begin{beamercolorbox}[wd=\textwidth, sep=1ex, rounded=true]{block body}
+		\scriptsize B.~Nouri, E.~Gad, A.~Nouri, and M.~Nakhla, ``DC-centric parameterized reduced-order model via moment-based interpolation projection (MIP) algorithm,'' \emph{IEEE Trans. CPMT}, vol.~10, no.~8, 2020.
+	\end{beamercolorbox}
+
+	\vspace{2ex}
+
+	\begin{columns}[T, onlytextwidth]
+		\begin{column}{0.62\textwidth}
+			\small
+			\textbf{\textcolor{blue!80!black}{Challenge: The Newton-Raphson Bottleneck}}
+			\begin{itemize}
+				\item Standard Monte Carlo is too slow for SI/PI \& RF.
+				\item Iterative solvers recompute DC points for every sample.
+				\item Evaluation of reduced nonlinear terms is the primary cost.
+			\end{itemize}
+
+			\vspace{2ex}
+			\textbf{\textcolor{blue!80!black}{Solution: Parameterized DEIM Formulation}}
+			\begin{itemize}
+				\item Developed a surrogate using \textbf{DC-centric DEIM}.
+				\item Directly exploits structurally parameterized moments.
+			\end{itemize}
+		\end{column}
+
+		\begin{column}{0.34\textwidth}
+			\setbeamercolor{block title alert}{bg=red!70!black, fg=white}
+			\setbeamercolor{block body alert}{bg=red!5, fg=black}
+			\begin{alertblock}{\centering \textbf{MEASURED IMPACT}}
+				\centering
+				\vspace{1ex}
+				{\huge \textbf{50$\times$}} \\
+				\footnotesize \textbf{Simulation Speed-up} \\
+				\vspace{1.5ex}
+				\textcolor{red!20}{\rule{0.8\textwidth}{0.5pt}} \\
+				\vspace{1.5ex}
+				\small \textbf{Zero-Risk} \\
+				\footnotesize Tape-out Readiness
+				\vspace{1ex}
+			\end{alertblock}
+		\end{column}
+	\end{columns}
+
+	\vfill
+	\begin{beamercolorbox}[wd=\textwidth, sep=1.2ex, center, rounded=true]{block body}
+		\small \itshape \textcolor{blue!80!black}{"Moving UQ from a 'prohibitive cost' to a 'practical design-stage tool' for SI/PI \& RF systems."}
+	\end{beamercolorbox}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% SLIDE 2: HB - RFIC Innovation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{HB: Efficient Periodic Steady-State (PSS) Analysis}
+	\vspace{1ex}
+
+	\begin{beamercolorbox}[wd=\textwidth, sep=1ex, rounded=true]{block body}
+		\scriptsize B.~Nouri, E.~Gad, A.~Nouri, and M.~Nakhla, ``Parameterized periodic steady-state analysis via reduced-order modelling,'' \emph{IEEE Trans. MTT}, vol.~69, no.~11, 2021.
+	\end{beamercolorbox}
+
+	\vspace{2ex}
+
+	\begin{columns}[T, onlytextwidth]
+		\begin{column}{0.62\textwidth}
+			\small
+			\textbf{\textcolor{blue!80!black}{Problem: The "Transformation Tax"}}
+			\begin{itemize}
+				\item Traditional solvers "ping-pong" between Time and Frequency domains for nonlinear terms.
+				\item FFT/IFFT operations dominate the CPU time.
+			\end{itemize}
+
+			\vspace{2ex}
+			\textbf{\textcolor{blue!80!black}{Innovation: Direct Harmonic Domain DEIM}}
+			\begin{itemize}
+				\item Evaluation of surrogates directly in the harmonic domain.
+				\item Eliminates domain conversion overhead entirely.
+				\item Successfully benchmarked on large-scale RF designs.
+			\end{itemize}
+		\end{column}
+
+		\begin{column}{0.34\textwidth}
+			\setbeamercolor{block title alert}{bg=red!70!black, fg=white}
+			\setbeamercolor{block body alert}{bg=red!5, fg=black}
+			\begin{alertblock}{\centering \textbf{MEASURED IMPACT}}
+				\centering
+				\vspace{1ex}
+				{\huge \textbf{30$\times$}} \\
+				\footnotesize \textbf{Total Speedup} \\
+				\vspace{1.5ex}
+				\textcolor{red!20}{\rule{0.8\textwidth}{0.5pt}} \\
+				\vspace{1.5ex}
+				\small \textbf{Days $\rightarrow$ Hours} \\
+				\footnotesize Design Cycle Reduction
+				\vspace{1ex}
+			\end{alertblock}
+		\end{column}
+	\end{columns}
+
+	\vfill
+	\begin{beamercolorbox}[wd=\textwidth, sep=1.2ex, center, rounded=true]{block body}
+		\small \itshape \textcolor{blue!80!black}{"Transforming infeasible multi-day simulations into routine, automated verification tasks for high-yield RFICs."}
+	\end{beamercolorbox}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% SLIDE 3: Stability - Active Circuits
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{Stability by Construction: Active Circuit Macromodeling}
+	\vspace{1ex}
+
+	\begin{beamercolorbox}[wd=\textwidth, sep=1ex, rounded=true]{block body}
+		\scriptsize G. Ghaly, E. Gad, M. Nakhla, and \textbf{B. Nouri}, ``An Algorithmic Approach to Formulate Well-Conditioned Stable Reduced-Order Models of Active Circuits,'' \textit{IEEE Trans. CPMT}.
+	\end{beamercolorbox}
+
+	\vspace{2ex}
+
+	\begin{columns}[T, onlytextwidth]
+		\begin{column}{0.62\textwidth}
+			\small
+			\textbf{\textcolor{blue!80!black}{Problem: Simulation Divergence}}
+			\begin{itemize}
+				\item Active circuits yield unstable ROMs under Galerkin projection.
+				\item Results in catastrophic failure during transient analysis.
+			\end{itemize}
+
+			\vspace{2ex}
+			\textbf{\textcolor{blue!80!black}{Innovation: Lyapunov-Based Projection}}
+			\begin{itemize}
+				\item Left-projection ($V$) satisfies \textbf{Lyapunov stability}.
+				\item Efficient \textbf{generalized eigenproblem} avoids optimization.
+				\item Built-in correction for numerical robustness.
+			\end{itemize}
+		\end{column}
+
+		\begin{column}{0.34\textwidth}
+			\setbeamercolor{block title alert}{bg=red!70!black, fg=white}
+			\setbeamercolor{block body alert}{bg=red!5, fg=black}
+			\begin{alertblock}{\centering \textbf{MEASURED IMPACT}}
+				\centering
+				\vspace{1ex}
+				{\huge \textbf{60$\times$}} \\
+				\footnotesize \textbf{Total Speedup} \\
+				\vspace{1.5ex}
+				\textcolor{red!20}{\rule{0.8\textwidth}{0.5pt}} \\
+				\vspace{1.5ex}
+				\small \textbf{Guaranteed Stability} \\
+				\footnotesize Numerical Robustness
+				\vspace{1ex}
+			\end{alertblock}
+		\end{column}
+	\end{columns}
+
+	\vfill
+	\begin{beamercolorbox}[wd=\textwidth, sep=1.2ex, center, rounded=true]{block body}
+		\small \itshape \textcolor{blue!80!black}{"Moving beyond 'fast' simulation to 'guaranteed' simulation for large-scale active networks."}
+	\end{beamercolorbox}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% SLIDE 4: EM-Circuit (Delayed PEEC)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{EM-Circuit Co-Simulation: Delayed PEEC Systems}
+	\vspace{1ex}
+
+	\begin{beamercolorbox}[wd=\textwidth, sep=1ex, rounded=true]{block body}
+		\scriptsize B. Nouri, L. Lombardi, et al., ``Parameterized model order reduction of delayed PEEC circuits,'' \emph{IEEE Trans. EMC}, vol.~62, no.~3, 2020.
+	\end{beamercolorbox}
+
+	\vspace{2ex}
+
+	\begin{columns}[T, onlytextwidth]
+		\begin{column}{0.62\textwidth}
+			\small
+			\textbf{\textcolor{blue!80!black}{Challenge: Neutral Delay DEs (NDDEs)}}
+			\begin{itemize}
+				\item High-speed retardation requires complex PEEC circuits.
+				\item Time-stepping is bottlenecked by interpolation.
+				\item Traditional solvers suffer from passivity crises.
+			\end{itemize}
+
+			\vspace{2ex}
+			\textbf{\textcolor{blue!80!black}{Innovation: Decoupled PMOR + NILT}}
+			\begin{itemize}
+				\item \textbf{Compact Subspaces:} Frequency-independent matching.
+				\item \textbf{NILT Solver:} Direct Laplace-domain evaluation, eliminating time-domain interpolation overhead.
+			\end{itemize}
+		\end{column}
+
+		\begin{column}{0.34\textwidth}
+			\setbeamercolor{block title alert}{bg=red!70!black, fg=white}
+			\setbeamercolor{block body alert}{bg=red!5, fg=black}
+			\begin{alertblock}{\centering \textbf{MEASURED IMPACT}}
+				\centering
+				\vspace{1ex}
+				{\huge \textbf{1000$\times$}} \\
+				\footnotesize \textbf{Simulation Speedup} \\
+				\vspace{1.5ex}
+				\textcolor{red!20}{\rule{0.8\textwidth}{0.5pt}} \\
+				\vspace{1.5ex}
+				\small \textbf{NILT vs. NDDE} \\
+				\footnotesize Three-Order Scale Shift
+				\vspace{1ex}
+			\end{alertblock}
+		\end{column}
+	\end{columns}
+
+	\vfill
+	\begin{beamercolorbox}[wd=\textwidth, sep=1.2ex, center, rounded=true]{block body}
+		\small \itshape \textcolor{blue!80!black}{"Scaling retarded system simulation by three orders of magnitude for industrial SI/PI verification."}
+	\end{beamercolorbox}
+\end{frame}

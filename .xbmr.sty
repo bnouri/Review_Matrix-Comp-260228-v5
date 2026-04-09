@@ -1,287 +1,305 @@
-\NeedsTeXFormat{LaTeX2e}
+% !TEX program = xelatex
+% ======================================================
+% IEEE-Aligned Beamer Configuration (Full Optimized Version)
+% ======================================================
 
 % ------------------------------------------------------
-%  Theme Selection: Metropolis
+% Theme & Core UI
 % ------------------------------------------------------
 \usetheme[numbering=none, progressbar=frametitle]{metropolis}
-\usecolortheme{dove} % White background, clean professional look
-
+\usecolortheme{dove}
 \setbeamertemplate{navigation symbols}{}
 
 % ------------------------------------------------------
-%  Color Palette (Unified RGB Model)
+% Color Palette (Unified RGB Model)
 % ------------------------------------------------------
 \usepackage{xcolor}
+\definecolor{siemensgreen}{rgb}{0.0, 0.6, 0.6}
+\definecolor{siemensblue}{rgb}{0.0, 0.06, 0.12}
+\definecolor{academicblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{academicgreen}{rgb}{0.0, 0.32, 0.22}
+\definecolor{codegreen}{rgb}{0.1, 0.5, 0.2}
+\definecolor{codeblue}{rgb}{0.15, 0.35, 0.65}
+\definecolor{codered}{rgb}{0.7, 0.2, 0.2}
+\definecolor{codegray}{rgb}{0.5, 0.5, 0.5}
+\definecolor{codepurple}{rgb}{0.58, 0, 0.82}
+\definecolor{codemagenta}{rgb}{0.8, 0, 0.8}
+\definecolor{codeteal}{rgb}{0, 0.5, 0.5}
+\definecolor{deepnavy}{rgb}{0.0, 0.0, 0.5} % Added missing definition
+\definecolor{backcolour}{rgb}{0.96, 0.96, 0.94}
 
-% Siemens & Academic Branding
-\definecolor{siemensgreen}{rgb}{0.0, 0.6, 0.6}      % Official Siemens Petrol
-\definecolor{siemensblue}{rgb}{0.0, 0.06, 0.12}     % Deep Dark Blue
-%\definecolor{academicblue}{rgb}{0.0, 0.2, 0.4}     % Oxford/Deep Navy
-\definecolor{academicblue}{rgb}{0.0, 0.0, 0.0}      % Black
-\definecolor{academicgreen}{rgb}{0.0, 0.32, 0.22}   % Emerald
-
-% Code & Syntax Highlighting
-\definecolor{codegreen}{rgb}{0.0, 0.65, 0.6}
-\definecolor{codeblue}{rgb}{0.0, 0.0, 0.8}
-\definecolor{codered}{rgb}{0.8, 0.0, 0.0}
-
+% Semantic Color Commands
+\newcommand{\green}[1]{\textcolor{codegreen}{#1}}
 \newcommand{\blue}[1]{\textcolor{codeblue}{#1}}
 \newcommand{\red}[1]{\textcolor{codered}{#1}}
-\newcommand{\green}[1]{\textcolor{codegreen}{#1}}
 
 % ------------------------------------------------------
-%  Beamer UI Customization
+% Typography & Math (IEEE Standard - XeLaTeX Compatible)
 % ------------------------------------------------------
-% Apply to main UI elements
-\setbeamercolor{palette primary}{bg=, fg=academicblue}
-\setbeamercolor{progress bar}{fg=academicblue}
-\setbeamercolor{title separator}{fg=academicblue}
+% For XeLaTeX, we avoid 'fontenc [T1]' which can conflict with system fonts
+\usepackage{amsmath}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{bm}
+\usepackage{microtype}
 
-% ------------------------------------------------------
-% Frame Titles (Centered & Bold)
-% ------------------------------------------------------
-\setbeamercolor{frametitle}{fg=codered}
-\setbeamerfont{frametitle}{series=\LARGE\bfseries}
-\setbeamerfont{framesubtitle}{size=\small, series=\bfseries}
+% Force Beamer to respect the loaded fonts
+\usefonttheme{professionalfonts}
 
+% Units and numbers (v3 compliant)
+\usepackage{siunitx}
+\sisetup{mode = match, per-mode = symbol}
+
+\usepackage{setspace}
+% ------------------------------------------------------
+% Beamer Layout & Theme Refinement
+% ------------------------------------------------------
+\setbeamercolor{normal text}{fg=black, bg=white}
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{palette primary}{fg=black, bg=white}
+\setbeamercolor{palette secondary}{fg=black, bg=white}
+\setbeamercolor{palette tertiary}{fg=black, bg=white}
+
+% Center the title and subtitle
+\setbeamertemplate{frametitle}[default][alignment=center]
+
+\setbeamercolor{frametitle}{fg=red}
+\setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\normalsize, series=\mdseries}
+
+\setbeamercolor{block title}{fg=black, bg=white}
+\setbeamerfont{block title}{series=\bfseries}
+\setbeamercolor{block body}{fg=black, bg=white}
+
+\setbeamertemplate{section in toc}[circle]   % Simple filled circle (IEEE‑friendly)
+\setbeamertemplate{section in toc}[sections numbered]   % Numbered (outline style)
+
+% Header/Title Template
 \makeatletter
 \setbeamertemplate{frametitle}{%
-  \nointerlineskip%
-  \begin{beamercolorbox}[wd=\paperwidth, sep=0.32cm, center]{frametitle}%
+    \vspace{0.5ex}%
+    \centering % <--- This is the missing piece
     {\usebeamerfont{frametitle}\insertframetitle\par}%
     \ifx\insertframesubtitle\@empty\else%
-      \vspace{0.15em}%
-      {\usebeamerfont{framesubtitle}\insertframesubtitle\par}%
+        {\usebeamerfont{framesubtitle}\insertframesubtitle\par}%
     \fi%
-  \end{beamercolorbox}%
+    \vspace{0.5ex}%
 }
 \makeatother
 
-% ------------------------------------------------------
+
 % Custom Footer (@2026 Behzad Nouri)
-% ------------------------------------------------------
 \setbeamertemplate{footline}{%
-  \begin{beamercolorbox}[wd=\paperwidth, ht=2ex, dp=1ex, rightskip=0.5cm]{footline}%
-    \footnotesize \hspace*{12pt} \copyright 2026 Behzad Nouri \hfill \insertframenumber \smallskip
-  \end{beamercolorbox}%
+	\begin{beamercolorbox}[wd=\paperwidth, ht=2.5ex, dp=1.5ex, rightskip=0.5cm]{footline}%
+		\footnotesize\hspace*{12pt}
+		\copyright~2026 Behzad Nouri \hfill \insertframenumber
+	\end{beamercolorbox}%
 }
 
-% ------------------------------------------------------
-% Section Title Slides
-% ------------------------------------------------------
+% Section Transition Slides
 \AtBeginSection[]{
-  \begin{frame}[plain,noframenumbering]
-    \vfill\centering
-    {\LARGE\color{academicblue}\insertsectionhead\par}
-    \vspace{0.2em}
-    {\color{academicblue}\rule{0.55\linewidth}{1.2pt}\par}
-    \vfill
-  \end{frame}
+	\begin{frame}[plain,noframenumbering]
+		\vfill\centering
+		{\LARGE\color{academicblue}\insertsectionhead\par}
+		\vspace{0.2em}
+		{\color{academicblue}\rule{0.55\linewidth}{1.2pt}\par}
+		\vfill
+	\end{frame}
 }
 
 % ------------------------------------------------------
-%  EDA Essentials: Math, Physics, and Circuits
+% Technical & Drawing Packages
 % ------------------------------------------------------
-\usepackage{amsmath, amssymb, amsthm}
-\usepackage{siunitx}
-\sisetup{detect-all}
+\usepackage{graphicx}
+\usepackage{import}
+\usepackage{verbatim}
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf}
+\usepackage{fontawesome5}
 
-% Matrix manipulation for MNA (Modified Nodal Analysis)
+
+% Matrix manipulation (MNA) & Circuits
 \usepackage{nicematrix}
 \usepackage{arydshln}
 \setlength{\dashlinedash}{1pt}
 \setlength{\dashlinegap}{1pt}
 
-% Figures & Captions
-\usepackage{graphicx}
-\usepackage{caption}
-\captionsetup{font=small, labelfont=bf}
-
-% Font rendering
-\usefonttheme[onlymath]{serif}
-\usefonttheme{professionalfonts}
-\DeclareMathSizes{8}{10}{7}{5}
-
-% Code and Containers
-\usepackage{verbatim}
+\usepackage[siunitx, american]{circuitikz}
+\usetikzlibrary{positioning, shadings, arrows.meta}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, calc, decorations.markings}
 \usepackage[most]{tcolorbox}
 
-\usepackage[
-  backend=biber,
-  style=ieee,
-  sorting=nyt
-]{biblatex}
-
-\addbibresource{./refs.bib}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%% Code Listing/snipet:
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ------------------------------------------------------
+% Code Listing Configuration
+% ------------------------------------------------------
 \usepackage{listings}
-
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-\definecolor{codegray}{rgb}{0.5, 0.5, 0.5}
-\definecolor{codepurple}{rgb}{0.58, 0, 0.82}
-\definecolor{codemagenta}{rgb}{0.8, 0, 0.8}
-\definecolor{codeteal}{rgb}{0, 0.5, 0.5}
-
-% --- Global Listings Settings (Shared by all styles) ---
 \lstset{
-  backgroundcolor=\color{backcolour},
-  basicstyle=\ttfamily\footnotesize,
-  breaklines=true,
-  captionpos=b,
-  keepspaces=true,
-  numbers=left,
-  numberstyle=\tiny\color{codegray},
-  numbersep=8pt,
-  xleftmargin=15pt,
-  aboveskip=10pt,
-  belowskip=10pt,
-  tabsize=4,
-  frame=none,
-  mathescape=false,  % Crucial: tells listings $ is just a character
-  showtabs=false,
-  showspaces=false,
-  showstringspaces=false,
-  commentstyle=\color{codegreen},
-  keywordstyle=\color{magenta},
-  numberstyle=\tiny\color{codegray},
-  stringstyle=\color{codepurple},
-  breakatwhitespace=false,
+	backgroundcolor=\color{backcolour},
+	basicstyle=\ttfamily\footnotesize,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numberstyle=\tiny\color{codegray},
+	numbersep=8pt,
+	xleftmargin=15pt,
+	aboveskip=10pt,
+	belowskip=10pt,
+	tabsize=4,
+	frame=none,
+	mathescape=false,
+	showtabs=false,
+	showspaces=false,
+	showstringspaces=false,
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	stringstyle=\color{codepurple},
 }
 
-\lstdefinestyle{text}{
-  language={},
-}
-
-% -------------------------------------------------------
-% Style: Cpp
-% -------------------------------------------------------
+% Styles: C++, Python, Matlab, Bash, Git
 \lstdefinestyle{cpp}{
-  language=C++,
-  commentstyle=\color{codegreen}\itshape,
-  keywordstyle=\color{magenta},
-  keywordstyle=[2]\color{codeblue},
-  stringstyle=\color{codepurple},
-  directivestyle=\color{codeteal},
-  % REMOVE any literate={\$}{{\$}} lines here
-  morekeywords=[2]{
-      std, cout, cin, endl, vector, string, map, set, list, pair,
-      size_t, int8_t, int16_t, int32_t, int64_t, uint8_t,
-      unique_ptr, shared_ptr, auto, nullptr, constexpr, noexcept
-    }
+	language=C++,
+	commentstyle=\color{codegreen}\itshape,
+	keywordstyle=\color{magenta},
+	keywordstyle=[2]\color{codeblue},
+	directivestyle=\color{codeteal},
+	morekeywords=[2]{std, vector, string, unique_ptr, shared_ptr, auto, Eigen, MatrixXd}
 }
-
-% -------------------------------------------------------
-% Style: Python
-% -------------------------------------------------------
 \lstdefinestyle{python}{
-  language=Python,
-  commentstyle=\color{codegreen}\itshape,
-  keywordstyle=\color{blue},
-  keywordstyle=[2]\color{codeblue},
-  keywordstyle=[3]\color{codemagenta},
-  stringstyle=\color{codepurple},
-  morecomment=[s][\color{codegreen}]{"""}{"""},
-  morecomment=[s][\color{codegreen}]{'''}{'''},
-  morecomment=[f][\color{codeteal}]{@},
-  tabsize=4,
-  morekeywords=[2]{
-      print, len, range, type, int, str, float, list, dict, open, super, self,
-      True, False, None, Exception
-    },
-  morekeywords=[3]{
-      __init__, __str__, __repr__, __len__, __main__, __name__
-    }
+	language=Python,
+	commentstyle=\color{codegreen}\itshape,
+	keywordstyle=\color{blue},
+	keywordstyle=[2]\color{codeblue},
+	morekeywords=[2]{numpy, scipy, matplotlib, self, print}
 }
-
-% -------------------------------------------------------
-% Style: Matlab
-% -------------------------------------------------------
 \lstdefinestyle{matlab}{
-  language=Matlab,
-  commentstyle=\color{codegreen},
-  keywordstyle=\color{blue},
-  keywordstyle=[2]\color{codemagenta},
-  stringstyle=\color{codepurple},
-  morekeywords={global, persistent, properties, methods, events, classdef},
-  morekeywords=[2]{
-      plot, figure, subplot, title, xlabel, ylabel, grid, hold,
-      zeros, ones, eye, size, length, disp, fprintf, clear, clc
-    }
+	language=Matlab,
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{blue},
+	keywordstyle=[2]\color{codemagenta},
+	morekeywords=[2]{plot, zeros, eye, mldivide, inv}
 }
-
-% -------------------------------------------------------
-% Style: Bash/Shell
-% -------------------------------------------------------
 \lstdefinestyle{bash}{
-  language=bash,
-  alsoletter={-},
-  commentstyle=\color{codegreen},
-  keywordstyle=\color{magenta},
-  keywordstyle=[2]\color{codeblue},
-  stringstyle=\color{codepurple},
-  morekeywords=[2]{
-      sudo, apt, git, chmod, mkdir, rm, cp, mv, cat, grep, sed, awk,
-      curl, wget, systemctl, find, export, source, ssh
-    },
-  emph={USER, HOME, PATH, PWD, SHELL},
-  emphstyle=\color{codeteal}
+	language=bash,
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	morekeywords=[2]{sudo, git, make, cmake, export}
 }
-
-% -------------------------------------------------------
-% Style: Git (Specialized)
-% -------------------------------------------------------
 \lstdefinestyle{git}{
-  language=bash,
-  commentstyle=\color{codegreen},
-  keywordstyle=\color{magenta},          % 'git' command
-  keywordstyle=[2]\color{codeblue},     % subcommands
-  keywordstyle=[3]\color{codeteal},     % flags/options
-  stringstyle=\color{codepurple},
-  morekeywords={git},
-  morekeywords=[2]{
-      add, commit, push, pull, fetch, merge, rebase,
-      branch, checkout, switch, restore, log, status,
-      diff, config, init, remote, clone, stash, reset, tag
-    },
-  morekeywords=[3]{
-      -m, -a, -p, -u, -d, -f, -b, --all, --force, --graph,
-      --oneline, --decorate, --global, --hard, --soft
-    },
-  emph={master, main, origin, HEAD},
-  emphstyle=\color{codemagenta}
+	language=bash,
+	keywordstyle=\color{magenta},
+	keywordstyle=[2]\color{codeblue},
+	morekeywords={git},
+	morekeywords=[2]{add, commit, push, pull, branch, checkout, log}
 }
 
+% ------------------------------------------------------
+% Shorthands & Custom Containers
+% ------------------------------------------------------
+\newcommand{\mat}[1]{\mathbf{#1}}           % Matrix (Bold Roman)
+\newcommand{\op}[1]{\operatorname{#1}}      % Custom Operators
+\newcommand{\trieq}{\triangleq}             % Defined as
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%  SHort Hands
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% --- Math ---
-\newcommand{\mat}[1]{\mathbf{#1}} % Matrix, Bold
-%%\newcommand{\bm}[1]{\mbox{\boldmath $#1$}}
-\newcommand{\bs}[1]{\mbox{$\boldsymbol{#1}$}}
-\newcommand{\op}[1]{\operatorname{#1}}
-\def\trieq{\buildrel \Delta \over =}
-
-\DeclareRobustCommand{\cmd}[1]{\texttt{\textcolor{codeblue}{#1}}}
-
+% ------------------------------------------------------
+% Shorthand writes
+% ------------------------------------------------------
+% --- Page & Layout Control ---
 \newcommand{\np}{\null\par\vfill\clearpage\noindent}
 \newcommand{\nl}{\null\par\noindent}
 
+% --- Custom List Markers ---
+% Marker: #1 = vertical raise (ex), #2 = scale, #3 = symbol
+\newcommand{\Mark}[3]{%
+  \nl%
+  \raisebox{#1ex}{\scalebox{#2}{\textcolor{academicgreen}{#3}}}%
+  \hspace*{0.5em}%
+}
 
-\newcommand{\Mark}[1]{\nl\raisebox{-2pt}{\scalebox{1.5}{\textcolor{academicgreen}{#1}}}\hspace*{0.25em}}
+% --- Marker shortcuts ---
+\newcommand{\nlb}{\Mark{0.1}{1.1}{\textbullet}}
+\newcommand{\nlo}{\Mark{0.1}{1.1}{$\circ$}}
+\newcommand{\nld}{\Mark{0.1}{1.1}{\textendash}}
+\newcommand{\nlg}{\Mark{0.1}{1.1}{\textdagger}}
+\newcommand{\nlgg}{\Mark{0.1}{1.1}{\textdaggerdbl}}
+\newcommand{\nlt}{\Mark{0.1}{1.1}{$\blacktriangleright$}}
+
+% --- Generic custom symbol ---
+\newcommand{\newitem}[1]{\Mark{0.1}{1.1}{#1}}
+
+% ------------------------------------------------------
+% Boxes
+% ------------------------------------------------------
+\newtcolorbox{mybox}[1][gray]{
+	colback=#1!5, colframe=#1!50, arc=2mm, boxrule=0.5pt,
+	left=8pt, right=8pt, fontupper=\small, enhanced, breakable
+}
+
+% ------------------------------------------------------
+% Title Slide
+% ------------------------------------------------------
+\DeclareRobustCommand{\addtitlepage}{
+	\begin{frame}
+		\titlepage
+	\end{frame}
+}
+
+% ------------------------------------------------------
+% Title  Slide
+% ------------------------------------------------------
+\DeclareRobustCommand{\addtoc}{
+	\begin{frame}[t]{Table of Contents}
+		%\setlength{\parskip}{-1em}
+		\setstretch{0.8}
+		%\small
+		\vspace*{.1cm}
+		\tableofcontents[
+			hideallsubsections
+		]
+		\vfill
+	\end{frame}
+}
+
+% ------------------------------------------------------
+% Bibliography  Slide
+% ------------------------------------------------------
+\usepackage[backend=biber, style=ieee, sorting=nyt]{biblatex}
+\addbibresource{./refs.bib}
+
+\DeclareRobustCommand{\addbibilio}{
+	\section{Bibiliography}
+	\begin{frame}[t,allowframebreaks]{References}
+		\nocite{*}  %Shows all entries
+		\printbibliography
+	\end{frame}
+}
+
+% ------------------------------------------------------
+% Specialized Slides & Bibliography
+% ------------------------------------------------------
+\DeclareRobustCommand{\addlastslide}{
+	{
+			\setbeamercolor{background canvas}{bg=black!3}   % Soft off-white background (eye-friendly)
+			\begin{frame}[plain,noframenumbering]
+				\vfill
+				\centering
+				{\LARGE\bfseries\color{siemensgreen} Thank you}
+				\vfill
+			\end{frame}
+			\setbeamercolor{background canvas}{bg=}  % Reset background for safety
+		}
+}
 
 
-%% --- List Items ---
-\newcommand{\nlb}{\Mark{\textbullet}}
-\newcommand{\nlc}{\Mark{\textcircle}}
-\newcommand{\nld}{\Mark{\textendash}}
-\newcommand{\nlg}{\Mark{\textdagger}}
-\newcommand{\nlgg}{\Mark{\textdaggerdbl}}
-\newcommand{\nlt}{\nl\raisebox{0pt}{\scalebox{1.25}{\textcolor{academicgreen}{$\blacktriangleright$}}}\hspace*{0.25em}}
+\newcommand{\lmv}[1]{\vspace*{#1\baselineskip}}
 
-%%EOF
-
-
+% ------------------------------------------------------
+% Hyperlinks (Configured Last)
+% ------------------------------------------------------
+\hypersetup{
+	colorlinks=true,
+	linkcolor=deepnavy,
+	urlcolor=siemensgreen,
+	citecolor=deepnavy
+}
+%%EoF
